@@ -1,6 +1,7 @@
 package altinus.pretest.biz.domain;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,9 +17,16 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "pw")
+    @Column(name = "pw", nullable = false)
     private String pw;
+
+    @Builder
+    public Member(Long id, String email, String pw) {
+        this.id = id;
+        this.email = email;
+        this.pw = pw;
+    }
 }
