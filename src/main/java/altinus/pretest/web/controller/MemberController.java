@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.SQLException;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/members")
@@ -18,6 +20,7 @@ public class MemberController {
 
     @PostMapping("/signup")
     public ResponseEntity signup(@RequestBody MemberDto.SignupRequest request) {
+        memberService.signup(request);
         return ResponseEntity.ok("회원가입이 완료됐습니다.");
     }
 }
