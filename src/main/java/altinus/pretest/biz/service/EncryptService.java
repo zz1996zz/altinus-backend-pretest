@@ -13,7 +13,6 @@ public class EncryptService {
 
     private final AesBytesEncryptor encryptor;
 
-
     public String encryptEmail(String email) {
         byte[] encrypt = encryptor.encrypt(email.getBytes(StandardCharsets.UTF_8));
         return byteArrayToString(encrypt);
@@ -25,7 +24,7 @@ public class EncryptService {
         return new String(decrypt, StandardCharsets.UTF_8);
     }
 
-    private String byteArrayToString(byte[] bytes) {
+    public String byteArrayToString(byte[] bytes) {
         StringBuilder sb = new StringBuilder();
         for (byte abyte :bytes){
             sb.append(abyte);
@@ -34,7 +33,7 @@ public class EncryptService {
         return sb.toString();
     }
 
-    private byte[] stringToByteArray(String byteString) {
+    public byte[] stringToByteArray(String byteString) {
         String[] split = byteString.split("\\s");
         ByteBuffer buffer = ByteBuffer.allocate(split.length);
         for (String s : split) {
