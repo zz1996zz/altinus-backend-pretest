@@ -19,8 +19,8 @@ public class Comment {
     @Column(name = "comment_id")
     private Long id;
 
-    @Column(name = "comment", length = 500)
-    private String comment;
+    @Column(name = "content", length = 500)
+    private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
@@ -34,9 +34,9 @@ public class Comment {
     private List<Comment> childList = new ArrayList<>();
 
     @Builder
-    public Comment(Long id, String comment, Post post) {
+    public Comment(Long id, String content, Post post) {
         this.id = id;
-        this.comment = comment;
+        this.content = content;
         this.post = post;
     }
 
@@ -49,8 +49,8 @@ public class Comment {
     }
 
     public void addComment(Post post, Comment comment) {
-        addPost(post);
+        comment.addPost(post);
         this.childList.add(comment);
-        comment.addParent(comment);
+        comment.addParent(this);
     }
 }
