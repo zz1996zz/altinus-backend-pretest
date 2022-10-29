@@ -7,11 +7,17 @@ spring:
     show-sql: true
     properties:
       hibernate.format_sql: true
-  config:
-    import:
-      - classpath:/application.yml
-      - classpath:/application-db.yml
-      - classpath:/application-encryption.yml
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb;MODE=MySQL;
+    username: sa
+    password:
+  redis:
+    host: localhost
+    port: 6379
+
+jwt:
+  secret: c3ByaW5nLWJvb3Qtc2VjdXJpdHktand0LXR1dG9yaWFsLWppd29vbi1zcHJpbmctYm9vdC1zZWN1cml0eS1qd3QtdHV0b3JpYWwK
+
+aes:
+  secret: E67B0D20264D087754DB6126B961FF537ACA09792FA1C6F99BFEC155C9A8F6E8CE06AE6FEA3017989E4FA7614799EB65874212C439FD20FBF0ACC9201D58DD3

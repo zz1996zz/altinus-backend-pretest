@@ -28,18 +28,18 @@ class MemberServiceTest {
     @Value("${aes.secret}")
     String secret;
 
-    public MemberService memberService;
+    private MemberService memberService;
 
-    public EncryptService encryptService;
+    private EncryptService encryptService;
 
     @Mock
-    public MemberRepository memberRepository;
+    private MemberRepository memberRepository;
 
     @Autowired
-    public AesBytesEncryptor aesBytesEncryptor;
+    private AesBytesEncryptor aesBytesEncryptor;
 
     @Autowired
-    public PasswordEncoder encoder;
+    private PasswordEncoder encoder;
 
     @BeforeEach
     public void beforeEach() {
@@ -50,18 +50,18 @@ class MemberServiceTest {
     @Test
     void 회원가입() {
         //given
-        MemberDto.SignupRequest request = new MemberDto.SignupRequest("user@naver.com", "user1234");
+        MemberDto.MemberRequest request = new MemberDto.MemberRequest("user@naver.com", "user1234");
         Member member = request.toEntity(encoder, encryptService.encryptEmail(request.getEmail()));
 
         //mocking
         when(memberRepository.save(any(Member.class))).thenReturn(member);
-        when(memberRepository.findById(1L)).thenReturn(Optional.of(member));
+        when(memberRepository.findById(2L)).thenReturn(Optional.of(member));
 
         //when
         memberService.signup(request);
 
         //then
-        Member findMember = memberRepository.findById(1L).get();
+        Member findMember = memberRepository.findById(2L).get();
 
         assertThat(member.getEmail()).isEqualTo(findMember.getEmail());
         assertThat(member.getPw()).isEqualTo(findMember.getPw());

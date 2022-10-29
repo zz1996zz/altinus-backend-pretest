@@ -11,6 +11,12 @@ public class TokenDto {
     public static class TokenRequest{
         private String accessToken;
         private String refreshToken;
+
+        @Builder
+        public TokenRequest(String accessToken, String refreshToken) {
+            this.accessToken = accessToken;
+            this.refreshToken = refreshToken;
+        }
     }
 
     @Getter
