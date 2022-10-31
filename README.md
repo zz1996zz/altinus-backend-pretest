@@ -27,6 +27,7 @@
   - Spring Security의 필터체인을 활용하여 인가되지 않은 사용자의 게시판 등록 및 조회를 막음(401에러)
 ## 앱 구성
 ### ERD
+![altinus_pretest](https://user-images.githubusercontent.com/53508659/198937350-2978334d-83dc-4e2a-975f-b1331caeb0f5.png)
 
 ### API 명세서
  - [API 명세서](https://altinus-pretest.gitbook.io/altinus_pretest/reference/pretest)
